@@ -1,0 +1,22 @@
+{
+  "name": "canvasplus.js",
+  "version": "0.0.0",
+  "description": "canvas plus",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OceanRipple/canvasplus.js.git"
+  },
+  "keywords": [
+    "canvas"
+  ],
+  "author": "vinthony,jjnot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OceanRipple/canvasplus.js/issues"
+  },
+  "homepage": "https://github.com/OceanRipple/canvasplus.js"
+}

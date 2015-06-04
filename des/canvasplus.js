@@ -1,3 +1,15 @@
+;(function() {
+    'use strict';
+
+    function Canvasplus(canvas) {
+    	this.canvas = canvas;
+    	this.context = canvas.getContext('2d');
+    }
+    
+    if (!window.Canvasplus) {
+        window.Canvasplus = Canvasplus;
+    }
+})();
 ;
 (function(cp) {
     'use strict';
@@ -97,3 +109,7 @@
 
 
 })(Canvasplus);
+/*
+	@author:Shadow Cun
+	@time: 2015-06-04 17:33:03
+*/

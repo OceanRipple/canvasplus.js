@@ -13,7 +13,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('scripts', function() {
-    gulp.src('./src/*.js')
+    gulp.src(['./src/canvasplus.js','./src/*.js'])
         .pipe(concat('canvasplus.js'))
         .pipe(gulp.dest('./des'))
         .pipe(rename('canvasplus.min.js'))

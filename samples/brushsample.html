@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Brush Test Case</title>
+	<script type="text/javascript" src="../src/canvasplus.js"></script>
+	<script type="text/javascript" src="../src/brush.js"></script>
+	<style type="text/css">
+		#test_canvas{
+			border: 1px solid #ddd;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="test_canvas" width="300" height="300">Can not support canvas</canvas>
+	<script type="text/javascript">
+	    var canvas = document.getElementById("test_canvas");
+		var plus = new Canvasplus(canvas);
+		plus.normalBrush();
+	</script>
+</body>
+</html>

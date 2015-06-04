@@ -93,6 +93,7 @@
             y: pos.y - bbox.top * (canvas.height / bbox.height)
         };
     };
+    	
 
 
 })();

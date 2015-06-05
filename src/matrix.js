@@ -39,7 +39,7 @@
 
 	function matrix(imageData) {
 
-		var _width = imageData.width*4;
+		var _width = imageData.width;
 		var _height = imageData.height;
 		var data = imageData.data;
 		var mat = [];
@@ -49,8 +49,8 @@
 
 		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray
 		for(var i = 0;i < _height;i++){
-			var start = i*_width;
-			mat.push(data.subarray(start,start+_width));
+			var start = i*_width*4;
+			mat.push(data.subarray(start,start+_width*4));
 		}
 		return {
 			width:_width,
@@ -74,10 +74,13 @@
 	}
 	function trans(m){
 		var arr = [];
-		for(var x = 0; x < m.width; x++){
-			var temp = new Uint8ClampedArray(m.height);
+		for(var x = 0; x < m.width*4; x= x+4 ){
+			var temp = [];
 			for(var y = 0;y < m.height;y++){
-				temp[y] = m.data[y][x];
+				temp.push(m.data[y][x]);
+				temp.push(m.data[y][x+1]);
+				temp.push(m.data[y][x+2]);
+				temp.push(m.data[y][x+3]);
 			}
 			arr.push(temp);
 		}
@@ -92,14 +95,14 @@
 		var d = m.data;
 		var w = m.width;
 		var h = m.height;
-		var ff = new Uint8ClampedArray(w*h);
+		var ff = new Uint8ClampedArray(w*h*4);
 		for(var x = 0; x < h; x++ ){
-			for(var y = 0; y < w ; y++){
-				var idx = x*h + y;
+			for(var y = 0; y < w*4 ; y++){
+				var idx = x*w*4 + y;
 				ff[idx] = d[x][y];
 			}
 		}
-		return new ImageData(ff,w/4,h);
+		return new ImageData(ff,w,h);
 	}
 	function mxm(m1,m2){ 
 		//[todo] http://zh.wikipedia.org/zh/%E6%96%BD%E7%89%B9%E6%8B%89%E6%A3%AE%E6%BC%94%E7%AE%97%E6%B3%95

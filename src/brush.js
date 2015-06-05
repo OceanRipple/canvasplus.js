@@ -1,4 +1,4 @@
-
+;
 (function(cp) {
     'use strict';
     var defualtWith = 10;

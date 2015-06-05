@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Brush Test Case</title>
-	<script type="text/javascript" src='../des/canvasplus.min.js'></script>
+	<script type="text/javascript" src='../des/canvasplus.js'></script>
 	<style type="text/css">
 		#test_canvas{
 			border: 1px solid #ddd;
@@ -15,7 +15,18 @@
 	<script type="text/javascript">
 	    var canvas = document.getElementById("test_canvas");
 		var plus = new Canvasplus(canvas);
-		var imagedata = plus.context.getImageData(0,0,10,10);
+		plus.context.fillStyle = "#eb002a";
+		plus.context.fillRect(0,0,100,40);
+		plus.context.fillStyle = "#aaaaaa";
+		plus.context.fillRect(20,20,10,40);
+		plus.context.fill();
+		var imagedata = plus.context.getImageData(0,0,10,60);
+		var imagedata2 = plus.context.getImageData(20,20,60,100);
+		
+		// mm = plus.flat(plus.mxm(plus.matrix(imagedata2),plus.matrix(imagedata)));
+		mm = plus.flat(plus.trans(plus.matrix(imagedata2)));
+		console.log(mm);
+		plus.context.putImageData(mm,200,100);
 		// todo
 		
 	</script>

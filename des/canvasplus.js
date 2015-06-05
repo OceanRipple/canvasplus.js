@@ -4,13 +4,15 @@
     function Canvasplus(canvas) {
     	this.canvas = canvas;
     	this.context = canvas.getContext('2d');
+    	this.width = canvas.width;
+    	this.height = canvas.height;
     }
     
     if (!window.Canvasplus) {
         window.Canvasplus = Canvasplus;
     }
 })();
-;
+
 (function(cp) {
     'use strict';
     var defualtWith = 10;
@@ -112,4 +114,95 @@
 /*
 	@author:Shadow Cun
 	@time: 2015-06-04 17:33:03
+	@description: matrix tools
 */
+!(function  (cp) {
+	/*
+		@arguments:
+		   image:Object{
+				width,
+				height,
+				data
+		   }
+	*/ 
+	Uint8ClampedArray.prototype.reduce = function(cb,start){
+		var data = this;
+		var re = start;
+		var i = 0;
+		if(re === "undefined"){
+			re = data[0];
+			i = 1;
+		}
+		if(typeof cb == "function"){
+			for(i;i<data.length;i++){
+				data.hasOwnProperty(i) && (re = cb(re,data[i],i,data));
+			}	
+		}
+		return re;
+	}
+	Uint8ClampedArray.prototype.map = function(cb,context){
+		var arr = new Uint8ClampedArray(this.length);
+		if (typeof cb === "function"){
+			for(var k = 0,length = this.length;k<length;k++){
+				arr[k] = fn.call(context,this[k],k,this)
+			}
+		}
+		return arr;
+	}
+	cp.prototype.matrixCreater = function(imageData) {
+
+		var _this = this;
+		var _width = imageData.width;
+		var _height = imageData.height;
+		var data = imageData.data;
+		var matrix = [];
+
+		if(data.constructor.name !== Uint8ClampedArray.name)
+			throw "not a imagedata";
+
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray
+		for(var i = 0;i < _this.height;i++){
+			var start = i*4*_width;
+			matrix.push(data.subarray(start,start+4*_width));
+		}
+		_this.matrixStack = [];
+		_this.matrix = matrix;
+		_this.imageData = imageData;
+		return _this;
+	};
+	cp.prototype.dotProduct = function(v1,v2) {
+		//  two vectpr dot product
+		var _this = this;
+		if(v1.length !== v2.length) throw "error dot droduct";
+		var v = v1.reduce(function(prev,curr,ind,arr){
+				return Number(prev)+Number(curr*v2[ind]);
+			},0);
+		return v
+	};
+	cp.prototype.mxv = function(v){
+		var _this = this;
+		var t = _this.matrix.map(function(item){
+			return _this.dotProduct(item,v);
+		})
+		_this.matrixStack.push(t);
+		return t ; 
+	}
+	function accumulaten(m,start){
+		var len = m[0].length;
+		var arr = [];
+		for(var x = 0; x < len; x++){
+			var temp = 0;
+			for(var y = 0;y<len;y++){
+				temp += y;
+			}
+			arr.push(temp);
+		}
+		return arr;
+	}
+	cp.prototype.mxm = function(){
+		// http://www.cs.berkeley.edu/~oholtz/Talks/mit.pdf
+		var _this = this;
+		
+	}
+
+})(Canvasplus)

@@ -236,8 +236,13 @@
 			height:m1.height
 		}
 	}
+	// 逆时针旋转90度
+	function rotate90(imagedata){
+		return flat(trans(matrix(imagedata)))
+	}
 	cp.prototype.matrix = matrix;
 	cp.prototype.mxm = mxm;
 	cp.prototype.flat = flat;
 	cp.prototype.trans = trans;
+	cp.prototype.rotate90 = rotate90;
 })(Canvasplus)

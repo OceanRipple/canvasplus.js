@@ -30,8 +30,7 @@
 		// https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
 		var imagedata = plus.context.getImageData(0,0,200,100);
 		// mm = plus.flat(plus.mxm(plus.matrix(imagedata2),plus.matrix(imagedata)));
-		mm = plus.flat(plus.trans(plus.matrix(imagedata)));
-		plus.context.putImageData(mm,0,130);
+		plus.context.putImageData(plus.rotate90(imagedata),0,130);
 		// todo
 		
 	</script>

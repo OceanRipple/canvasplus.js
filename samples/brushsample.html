@@ -6,6 +6,7 @@
 	<!-- // <script type="text/javascript" src="../src/canvasplus.js"></script> -->
 	<!-- // <script type="text/javascript" src="../src/brush.js"></script> -->
 	<script type="text/javascript" src='../des/canvasplus.js'></script>
+	<script type="text/javascript" src='../des/canvasplus.min.js'></script>
 	<style type="text/css">
 		#test_canvas{
 			border: 1px solid #ddd;
@@ -23,16 +24,7 @@
 	    var canvas = document.getElementById("test_canvas");
 		var plus = new Canvasplus(canvas);
 		plus.pencil();
-		document.getElementById("test").addEventListener("click",function(){
-			var beginx = parseInt(document.getElementById("beginpointx").value);
-			var beginy = parseInt(document.getElementById("beginpointy").value);
-			var endx = parseInt(document.getElementById("endpointx").value);
-			var endy = parseInt(document.getElementById("endpointy").value);
-			plus.penciltest({
-				x:beginx,y:beginy
-			},{x:endx,y:endy})
-
-		})
+		
 	</script>
 </body>
 </html>

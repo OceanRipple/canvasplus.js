@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>matrix Test Case</title>
+	<script type="text/javascript" src='../des/canvasplus.js'></script>
+	<style type="text/css">
+		#test_canvas{
+			border: 1px solid #ddd;
+		}
+	</style>
+</head>
+<body>
+	<!-- <img class='origin' src="http://localhost:8000/samples/test.jpg" width="200" height='100'> -->
+	<canvas id="test_canvas" width="400" height="400">Can not support canvas</canvas>
+	<script type="text/javascript">
+	    var canvas = document.getElementById("test_canvas");
+	    var origin = document.getElementsByClassName('origin')[0];
+		var plus = new Canvasplus(canvas);
+		plus.context.fillStyle = "#eb002a";
+		plus.context.fillRect(0,0,10,20);
+		plus.context.fillStyle = "#aaaaaa";
+		plus.context.fillRect(20,20,10,40);
+		var grd=plus.context.createLinearGradient(0,0,170,0);
+		plus.context.fillStyle=grd;
+		plus.context.fillRect(0,00,150,100);
+		grd.addColorStop(0,"black");
+		grd.addColorStop(1,"white");
+		plus.context.fill();
+		// https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image
+		var imagedata = plus.context.getImageData(0,0,200,100);
+		// mm = plus.flat(plus.mxm(plus.matrix(imagedata2),plus.matrix(imagedata)));
+		plus.context.putImageData(plus.rotate90(imagedata),0,130);
+		// todo
+		
+	</script>
+</body>
+</html>

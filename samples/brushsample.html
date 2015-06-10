@@ -5,7 +5,7 @@
 	<title>Brush Test Case</title>
 	<!-- // <script type="text/javascript" src="../src/canvasplus.js"></script> -->
 	<!-- // <script type="text/javascript" src="../src/brush.js"></script> -->
-	<script type="text/javascript" src='../des/canvasplus.min.js'></script>
+	<script type="text/javascript" src='../des/canvasplus.js'></script>
 	<style type="text/css">
 		#test_canvas{
 			border: 1px solid #ddd;
@@ -14,10 +14,25 @@
 </head>
 <body>
 	<canvas id="test_canvas" width="400" height="400">Can not support canvas</canvas>
+	<input placeholder="beginpointx" type="number" id="beginpointx"/>
+	<input placeholder="beginpointy" type="number" id="beginpointy"/>
+	<input placeholder="endpointx" type="number" id="endpointx"/>
+	<input placeholder="endpointy"type="number"  id="endpointy"/>
+	<button id="test">test pencile</button>
 	<script type="text/javascript">
 	    var canvas = document.getElementById("test_canvas");
 		var plus = new Canvasplus(canvas);
-		plus.normalBrush();
+		plus.pencil();
+		document.getElementById("test").addEventListener("click",function(){
+			var beginx = parseInt(document.getElementById("beginpointx").value);
+			var beginy = parseInt(document.getElementById("beginpointy").value);
+			var endx = parseInt(document.getElementById("endpointx").value);
+			var endy = parseInt(document.getElementById("endpointy").value);
+			plus.penciltest({
+				x:beginx,y:beginy
+			},{x:endx,y:endy})
+
+		})
 	</script>
 </body>
 </html>
